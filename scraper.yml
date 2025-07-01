@@ -2,7 +2,7 @@ name: Jobs Scraper
 
 on:
   schedule:
-    - cron: '0 8 * * 0'  # každou neděli v 8:00 UTC
+    - cron: '3 8 * * 0'  # každou středu? v 8:00 UTC
   workflow_dispatch:      # umožňuje ruční spuštění
 
 jobs:
