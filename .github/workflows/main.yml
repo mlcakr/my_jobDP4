@@ -21,7 +21,7 @@ jobs:
       run: pip install -r requirements.txt
 
     - name: Run scraper
-      run: python scraper_jobs.py
+      run: my_job_v02.py
 
     - name: Upload results
       uses: actions/upload-artifact@v4
