@@ -1,6 +1,6 @@
 on:
   schedule:
-    - cron: '0 8 * * 0'
+    - cron: '0 10 * * 3'   # každou středu v 10:00 UTC (středa: 3)
   workflow_dispatch:
 
 jobs:
@@ -8,7 +8,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout repo
+      uses: actions/checkout@v4
 
     - name: Set up Python
       uses: actions/setup-python@v5
@@ -21,16 +22,18 @@ jobs:
     - name: Run scraper
       run: python my_job_v02.py
 
-    - name: Commit and push results
-      run: |
-        git config --global user.name "github-actions[bot]"
-        git config --global user.email "github-actions[bot]@users.noreply.github.com"
-        git add nabidky_prace/
-        git commit -m "Automaticky uložené výsledky scrapu [skip ci]" || echo "No changes to commit"
-        git push
+    - name: Upload results to FTP
+      uses: sebastianpopp/ftp-action@v2
+      with:
+        host: ${{ secrets.FTP_HOST }}
+        user: ${{ secrets.FTP_USER }}
+        password: ${{ secrets.FTP_PASS }}
+        localDir: nabidky_prace/
+        remoteDir: /www/Projekt_DP_4/
 
-    - name: Upload results
+    - name: Upload results as GitHub artifact
       uses: actions/upload-artifact@v4
       with:
         name: scraped-jobs
         path: nabidky_prace/
+
