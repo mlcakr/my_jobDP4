@@ -1,6 +1,6 @@
 on:
   schedule:
-    - cron: '0 10 * * 3'   # každou středu v 10:00 UTC (středa: 3)
+    - cron: '0 10 * * 3'
   workflow_dispatch:
 
 jobs:
@@ -23,19 +23,10 @@ jobs:
       run: python my_job_v02.py
 
     - name: Upload results to FTP
-        uses: sebastianpopp/ftp-action@v2.0.0
-        with:
-          host: ${{ secrets.FTP_HOST }}
-          user: ${{ secrets.FTP_USER }}
-          password: ${{ secrets.FTP_PASS }}
-          localDir: nabidky_prace/
-          remoteDir: /www/Projekt_DP_4/
-
-
-
-    - name: Upload results as GitHub artifact
-      uses: actions/upload-artifact@v4
+      uses: sebastianpopp/ftp-action@v2.0.0
       with:
-        name: scraped-jobs
-        path: nabidky_prace/
-
+        host: ${{ secrets.FTP_HOST }}
+        user: ${{ secrets.FTP_USER }}
+        password: ${{ secrets.FTP_PASS }}
+        localDir: nabidky_prace/
+        remoteDir: /www/Projekt_DP_4/
