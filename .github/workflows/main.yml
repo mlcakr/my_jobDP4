@@ -23,13 +23,15 @@ jobs:
       run: python my_job_v02.py
 
     - name: Upload results to FTP
-      uses: sebastianpopp/ftp-action@v2
-      with:
-        host: ${{ secrets.FTP_HOST }}
-        user: ${{ secrets.FTP_USER }}
-        password: ${{ secrets.FTP_PASS }}
-        localDir: nabidky_prace/
-        remoteDir: /www/Projekt_DP_4/
+        uses: sebastianpopp/ftp-action@v2.0.0
+        with:
+          host: ${{ secrets.FTP_HOST }}
+          user: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASS }}
+          localDir: nabidky_prace/
+          remoteDir: /www/Projekt_DP_4/
+
+
 
     - name: Upload results as GitHub artifact
       uses: actions/upload-artifact@v4
