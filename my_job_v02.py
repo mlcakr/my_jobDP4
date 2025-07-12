@@ -6,7 +6,7 @@ import time
 
 # UPRAVENO: Cesty ke složkám a souborům
 DIR = "nabidky_prace"
-JOBS_FILE = os.path.join(DIR, "jobs.txt")      # UPRAVENO
+JOBS_FILE = os.path.join(DIR, "jobs.html")      # UPRAVENO
 ID_FILE = os.path.join(DIR, "ids.txt")         # UPRAVENO
 LOG_FILE = os.path.join(DIR, "error_log.txt")  # UPRAVENO
 
